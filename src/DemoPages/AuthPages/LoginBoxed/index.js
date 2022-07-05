@@ -17,21 +17,22 @@ const LoginBoxed = () => {
   };
 
   const handleLogin = () => {
-    dispatch(acquireToken({ user_email: loginData.email, user_password: loginData.password }));
+    dispatch(acquireToken({ user_email: loginData.email, user_password: loginData.password, handleRedirection }));
   };
 
-  useEffect(() => {
-    if (accessToken) {
+  const handleRedirection = (res) => {
+    if (res?.success === true) {
+      sessionStorage.setItem('token', JSON.stringify(res?.token));
       history.push('/analysis/reviews');
     }
-  }, [accessToken]);
+  };
 
   return (
     <Fragment>
       <div className="h-100 bg-plum-plate bg-animation">
         <div className="d-flex h-100 justify-content-center align-items-center">
           <Col md="8" className="mx-auto app-login-box">
-            <div className="app-logo-inverse mx-auto mb-3" />
+            <div className="app-logo-inverse mx-auto mb-3"/>
             <div className="modal-dialog w-100 mx-auto">
               <div className="modal-content">
                 <div className="modal-body">
@@ -69,13 +70,13 @@ const LoginBoxed = () => {
                       </Col>
                     </Row>
                     <FormGroup check>
-                      <Input type="checkbox" name="check" id="exampleCheck" />
+                      <Input type="checkbox" name="check" id="exampleCheck"/>
                       <Label for="exampleCheck" check>
                         Keep me logged in
                       </Label>
                     </FormGroup>
                   </Form>
-                  <div className="divider" />
+                  <div className="divider"/>
                   <h6 className="mb-0">
                     No account?{' '}
                     <NavLink to={'/auth/signup'} className="text-primary">
@@ -85,9 +86,9 @@ const LoginBoxed = () => {
                 </div>
                 <div className="modal-footer clearfix">
                   <div className="float-start">
-                    <a onClick={(e) => e.preventDefault()} className="btn-lg btn btn-link">
+                    <NavLink to={'/auth/forgot-password'} className="text-primary">
                       Recover Password
-                    </a>
+                    </NavLink>
                   </div>
                   <div className="float-end">
                     <Button color="primary" size="lg" onClick={() => handleLogin()}>

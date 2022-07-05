@@ -6,3 +6,5 @@ export const token = Cookies.get('token');
 export const razor_pay_key_id = 'rzp_test_Q5SuMsyH1vVE8n';
 
 export const LOGIN_URL = 'user/login';
+export const REGISTER_URL = 'user/signup';
+export const RESET_PASSWORD_URL = 'user/sendResetPassLink';

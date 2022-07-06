@@ -1,6 +1,7 @@
 import { LOGIN_URL, REGISTER_URL, RESET_PASSWORD_URL } from '../../constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import { apiUrl } from '../../constants';
 
 export const acquireToken = createAsyncThunk('auth/acquireToken', async (data) => {
   const { user_email, user_password, handleRedirection } = data;
@@ -14,7 +15,7 @@ export const acquireToken = createAsyncThunk('auth/acquireToken', async (data) =
   };
 
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${LOGIN_URL}`, config);
+    const response = await fetch(`${apiUrl}${LOGIN_URL}`, config);
     const result = await response.json();
     if(result.success){
       toast.success('Login Successfully!');
@@ -41,7 +42,7 @@ export const acquireRegister = createAsyncThunk('auth/acquireRegister', async (d
   };
 
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${REGISTER_URL}`, config);
+    const response = await fetch(`${apiUrl}${REGISTER_URL}`, config);
     const result = await response.json();
     if(result.success){
       toast.success('Register Successfully!');
@@ -67,7 +68,7 @@ export const resetPassWordLink = createAsyncThunk('auth/resetPassWordLink', asyn
   };
 
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${RESET_PASSWORD_URL}`, config);
+    const response = await fetch(`${apiUrl}${RESET_PASSWORD_URL}`, config);
     const result = await response.json();
     if(result.success) {
       toast.success('Password reset link sent to your email!');

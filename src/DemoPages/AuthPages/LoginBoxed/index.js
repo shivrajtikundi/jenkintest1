@@ -4,6 +4,7 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { acquireToken } from '../../../redux/Auth/authThunks';
+import Cookies from 'js-cookie';
 
 const LoginBoxed = () => {
   const history = useHistory();
@@ -23,6 +24,7 @@ const LoginBoxed = () => {
   const handleRedirection = (res) => {
     if (res?.success === true) {
       sessionStorage.setItem('token', JSON.stringify(res?.token));
+      Cookies.set('token', res?.token);
       history.push('/analysis/reviews');
     }
   };

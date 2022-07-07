@@ -30,19 +30,19 @@ class Header extends React.Component {
             exit={false}
           >
             <div>
-              <HeaderLogo />
+              <HeaderLogo menuclosable={this.props.menuclosable}/>
               <div
                 className={cx('app-header__content', {
                   'header-mobile-open': !enableMobileMenuSmall,
                 })}
               >
                 <div className="app-header-left">
-                  <SearchBox />
-                  <MegaMenu />
+                  {/* <SearchBox />
+                  <MegaMenu /> */}
                 </div>
                 <div className="app-header-right">
-                  <HeaderDots />
-                  <UserBox />
+                  {/* <HeaderDots/> */}
+                  <UserBox/>
                 </div>
               </div>
             </div>

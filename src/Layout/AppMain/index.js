@@ -1,79 +1,106 @@
-import { Redirect, Route, Switch } from 'react-router-dom';
-import React, { Suspense, lazy, Fragment } from 'react';
-import Loader from 'react-loaders';
-import { ToastContainer } from 'react-toastify';
-import AnalyticsDashboard from '../../DemoPages/Dashboards/Analytics';
-import SalesDashboard from '../../DemoPages/Dashboards/Sales';
-import CommerceDashboard from '../../DemoPages/Dashboards/Commerce';
-import CRMDashboard from '../../DemoPages/Dashboards/CRM';
-import Home from '../../DemoPages/Home';
-import PrivateRoute from './PrivateRoute';
+import { Route, Redirect} from 'react-router-dom';
+import React, {Suspense, lazy, Fragment, useEffect, useState} from 'react';
+import Loader from 'react-loaders'
 
-const UserPages = lazy(() => import('../../DemoPages/UserPages'));
-const AuthPages = lazy(() => import('../../DemoPages/AuthPages'));
-const Applications = lazy(() => import('../../DemoPages/Applications'));
-const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
-const Widgets = lazy(() => import('../../DemoPages/Widgets'));
-const Elements = lazy(() => import('../../DemoPages/Elements'));
-const Components = lazy(() => import('../../DemoPages/Components'));
-const Charts = lazy(() => import('../../DemoPages/Charts'));
-const Forms = lazy(() => import('../../DemoPages/Forms'));
-const Tables = lazy(() => import('../../DemoPages/Tables'));
+import {
+    ToastContainer,
+} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import Users from "../../DemoPages/Users";
+import Login from "../../DemoPages/Users/Components/login";
+import Dashboards from "../../DemoPages/Dashboards";
+import Licence from "../../DemoPages/Licence";
+import AppSource from "../../DemoPages/AppSource";
+import Teams from "../../DemoPages/Teams";
+
+import { userService, alertService } from '../../services';
+import AppReviews from '../../DemoPages/Reviews/index';
+import PrivateRoute from  "./PrivateRoute.js";
+
+// const UserPages = lazy(() => import('../../DemoPages/UserPages'));
+// const Applications = lazy(() => import('../../DemoPages/Applications'));
+// const Dashboards = lazy(() => import('../../DemoPages/Dashboards'));
+
+// const Widgets = lazy(() => import('../../DemoPages/Widgets'));
+// const Elements = lazy(() => import('../../DemoPages/Elements'));
+// const Components = lazy(() => import('../../DemoPages/Components'));
+// const Charts = lazy(() => import('../../DemoPages/Charts'));
+// const Forms = lazy(() => import('../../DemoPages/Forms'));
+// const Tables = lazy(() => import('../../DemoPages/Tables'));
+
 
 const AppMain = () => {
-  return (
-    <>
-      <Suspense
-        fallback={
-          <div className="loader-container">
-            <div className="loader-container-inner">
-              <div className="text-center">
-                <Loader type="ball-pulse-rise" />
-              </div>
-              <h6 className="mt-5">
-                Please wait while we load all the Components examples
-                <small>
-                  Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a
-                  real live app!
-                </small>
-              </h6>
-            </div>
-          </div>
+    const [{
+        user_logged_in,
+        user
+    }, setState] = useState({
+        user_logged_in:"LOGGED_IN",
+        user:null
+    });
+    useEffect(()=>{
+        // if(window.location.href.indexOf("/user/login") == -1 && window.location.href.indexOf("/user/signup") == -1 && window.location.href.indexOf("/user/forgot_pass") == -1 && window.location.href.indexOf("/user/reet_pass") == -1){
+            validateUser();  
+        // }
+        return()=>{
+            // validateUser();
         }
-      >
-        <Switch>
-          {/* Analysis Section Routes */}
-          {/* <Route path="/analysis" component={Dashboards} /> */}
-          <PrivateRoute path="/analysis" component={Dashboards} />
+    },[])
+    const validateUser = () => {
+        userService.findTokenUser().then((response) =>{
+            setState((prevState) => ({
+                ...prevState,
+                user: response
+            }))
+        }).catch(error => {
+            setState((prevState) => ({
+                ...prevState,
+                user: "ERROR"
+            }))
+            return;
+        });
+    }
+    if(user==null){
+        return  (<div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="line-scale-pulse-out"/>
+                        </div>
+                    </div>
+                </div>);
+    }
 
-          {/* Grouping Section Routes */}
-          {/* <Route path="/grouping" component={Dashboards} /> */}
-          <PrivateRoute path="/grouping" component={Dashboards} />
+    return(
+        <Fragment>
+            <Route path="/dashboards" component={Dashboards}/>
+            <Route path="/users" component={Users}/>
+            <Route path="/licence" component={Licence}/>
+            <Route path="/source" component={AppSource}/>
+            <Route path="/teams" component={Teams}/>
+            <Route path="/reviews" component={AppReviews}/>
+            {(user!=null && user.success==true && user.data && user.data.length>0 && user.data[0]._id!="")?
+                <Route exact path="/" render={() => (
+                    <Redirect to="/dashboards"/>
+                )}/>:
+                <Route exact path="/" render={() => (
+                    <Redirect to="/users/login"/>
+                )}/>
+            }
+            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme='dark'
+            />
+        </Fragment>
+    )
 
-          {/* Audience Section Routes */}
-          {/* <Route path="/audience" component={Dashboards} /> */}
-          <PrivateRoute path="/audience" component={Dashboards} />
-
-          {/* Reporting Section Routes */}
-          {/* <Route path="/reporting" component={Dashboards} /> */}
-          <PrivateRoute path="/reporting" component={Dashboards} />
-
-          {/* UserPages Section Routes */}
-          {/* <Route path="/users" component={Dashboards} /> */}
-          <PrivateRoute path="/users" component={UserPages} />
-
-          {/* Auth Section Routes */}
-          <Route path="/auth" component={AuthPages} />
-
-          {/* HomePage Section Routes */}
-          <Route exact path="/" component={Home} />
-
-          {/* Redirect user to login page if they input wrong route */}
-          <Redirect to="/auth/login" />
-        </Switch>
-      </Suspense>
-    </>
-  );
 };
 
 export default AppMain;

@@ -2,27 +2,27 @@ export const AnalysisNav = [
   {
     icon: 'pe-7s-rocket',
     label: 'Reviews',
-    to: '/analysis/reviews',
+    to: '/reviews',
   },
   {
     icon: 'pe-7s-star',
     label: 'Ratings',
-    to: '/analysis/ratings',
+    to: '/ratings',
   },
   {
     icon: 'pe-7s-star',
     label: 'Sentiments',
-    to: '/analysis/sentiments',
+    to: '/sentiments',
   },
   {
     icon: 'pe-7s-star',
     label: 'Dashboards',
-    to: '/analysis/dashboards',
+    to: '/dashboards',
   },
   {
     icon: 'pe-7s-star',
     label: 'Compare',
-    to: '/analysis/compare',
+    to: '/compare',
   },
 ];
 

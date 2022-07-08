@@ -1,8 +1,9 @@
 import { Route, Redirect } from 'react-router-dom';
+import Cookie from "js-cookie";
 
 // Private Route for Authenticated user
 function PrivateRoute({ component: Component, ...rest }) {
-  const isAuthenticated = JSON.parse(sessionStorage.getItem('token'));
+  const isAuthenticated = JSON.parse(Cookie.getItem('token'));
 
   return (
     <>

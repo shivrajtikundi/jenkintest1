@@ -1,0 +1,351 @@
+.pageHeader{
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-rendering: optimizelegibility;
+}
+
+.imageIconContainer{
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.appSourceTypeTextContainer{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.appTitleContainer{
+    font-weight: 600;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.storeTypeNameContainer{
+    padding-left: 7px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.customAppMain{
+    display: block!important;
+}
+
+.pageContainer{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.customCardHeader{
+    text-transform: none!important;
+}
+
+.customCardHeaderTableHeader{
+    text-transform: none!important;
+    height: 38px;
+}
+
+.customeCardBodyTableContainer{
+    /* padding-top: 0px!important; */
+}
+
+.customCardHeaderTableHeader > table > thead{
+    text-transform: none!important;
+    height: 100%; 
+    border: 0px!important;
+}
+
+
+.headerTable{
+    margin:0px!important;
+}
+
+.headerTableTheadElems{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+    background-color: #FFF
+}
+
+
+
+.searchBtn, .searchBtn:hover, .searchBtn:focus{
+    background: black!important;
+    color: white!important;
+    outline: none!important;
+    border: none!important;
+    height: 100%;
+    width: 100%;
+}
+
+.searchBox{
+    height: 100%;
+    border:none;
+    outline: none;
+    border-radius: 10px;
+    background: rgb(229, 229, 229);
+}
+
+.searchBox:focus{
+    border: #007bff!important;;
+}
+
+.footerLink{
+    color: #C48C15
+}
+
+.manageSourcesHeader{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.manageSourcesSubHeader{
+    font-size: 14px;
+}
+
+.headerButtons{
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.headerButtons button{
+    margin-left: auto; 
+    margin-right: 0;
+    border-radius: 10px;
+    background-color: #FFF !important;
+    border: 2px solid #ececec !important;
+    color: #323232 !important;
+}
+
+.customCardHeaderSecondary{
+    margin-top: 20px;
+}
+
+.customCardText{
+    text-align: center;
+}
+
+.inviteTeamButton{
+    margin-top: 25px;
+}
+
+.inviteTeamButton button{
+    border-radius: 10px;
+    background-color: #FFF !important;
+    border: 2px solid #ececec !important;
+    color: #323232 !important;
+}
+
+.applist{
+    margin-top: 20px;
+}
+
+.appListHeader{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 2px solid rgb(73, 187, 252);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.appListBody{
+    padding:0px !important;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.appName{
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0px !important;
+}
+
+.appPublisherName{
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #5b5e63;
+}
+
+.addSourceFromTableBtn{
+    border-radius: 20px;
+    background-color: #FFF !important;
+    border: 2px solid #dbd7d7 !important;
+    color: #323232 !important;
+}
+.iIcon{
+    margin-top: -5px;
+}
+
+.appTableImgHolder{
+    width: 15%;
+    padding: 20px!important;
+}
+.appInfoHolder{
+    width:55%;
+    padding-top: 23px!important;
+}
+.appTableActionBtnHolder{
+    width:30%;
+}
+.appListHeaderForGoogle{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 2px solid rgb(14, 205, 108);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 20px;
+}
+  
+.switch input {
+    display: none;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ca2222;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 15px;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 25px;
+    left: 2px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 15px;
+}
+  
+input:checked + .slider {
+    background-color: #2ab934;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+  /*------ ADDED CSS ---------*/
+.on {
+    display: none;
+}
+  
+.on {
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 30%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+  
+.off {
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 68%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+input:checked + .slider .on {
+    display: block;
+}
+  
+input:checked + .slider .off {
+    display: none;
+}
+  
+/*--------- END --------*/
+  
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+    height:30px;
+}
+.addIntegrationBtn, .addIntegrationBtn:focus, .addIntegrationBtn:hover{
+    border-radius: 50px;
+    background-color: #FFF !important;
+    border: 2px solid #dbd7d7 !important;
+    color: #323232 !important;
+    width: 40px;
+    margin: 0 auto;
+    padding: 6px;
+}
+.addIntegrationBtn svg{
+    margin-top: -2px;
+}
+.actionBtn{
+    border-radius: 50px;
+    background-color: #FFF !important;
+    border: none;
+    outline: none;
+    color: #323232 !important;
+    width: 40px;
+    margin: 0 auto;
+    padding: 6px;
+    margin: 3px;
+}
+
+.appIconHolder{
+    height: 50px;
+    width: 50px;
+}
+
+.fixTableHead {
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.cutomAlertBox{
+    text-align: center;
+    width: 500px;
+    padding: 40px;
+    background: #28bae6;
+    box-shadow: 0 20px 75px rgb(0 0 0 / 23%);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.cutomAlertBox > button {
+    width: 160px;
+    padding: 10px;
+    border: 1px solid #fff;
+    margin: 10px;
+    cursor: pointer;
+    background: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.headerTable{
+    width: '100%';
+    display: 'table';
+    border-spacing: 0;
+    border-collapse: 'separate';
+}

@@ -6,13 +6,15 @@ import style from "../style.module.css";
 import {userService, alertService} from "../../../services/index";
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from "react-toastify";
-import logo from "../../../assets/utils/images/review_analytics_logo.png"
+import logo from "../../../assets/utils/images/review_analytics_logo.png";
+import placeholder from "../../../assets/utils/images/review_analytics_logo.png";
 
 const Login = () => {
-    const [{user_email, user_password},
+    const [{user_email, user_password,errorLog},
         setState] = useState({
             user_email: "",
-            user_password:""
+            user_password:"",
+            errorLog:""
         })
     
     const handleChange = (event) =>{
@@ -27,96 +29,153 @@ const Login = () => {
     const redirectToForgotPass = () => {
         window.location.href = "/users/forgot_pass";
     }
-    /*const testLogin = () => {
-        var req = {
-            user_email:user_email,
-            user_password:user_password
-        }
-        const resolveWithSomeData = new Promise((resolve, reject) => setTimeout(() => resolve("world"), 3000));
-        toast.promise(
-            userService.login(req),
-            {
-              pending: 'Promise is pending',
-              success: {
-                render({data}){
-                  return `Hello ${data}`
-                },
-              },
-              error: {
-                render({data}){
-                    return `Hello ${data}`
-                }
-              }
-            }
-        )
-    }*/
+    
     const login = () => {
-        const loginpromise = new Promise(async (resolve, reject)=>{
-            if(user_email!="" && user_password!=""){
-                var req = {
-                    user_email:user_email,
-                    user_password:user_password
-                }
-                userService.login(req).then(async (response) => {
-                    if(response.success==true){
-                        Cookies.set('token', response.token);
-                        // alertService.throwSuccess("Successfully Logged in");
-                        resolve("Successfully Logged in");
-                        window.location = "/dashboards";
-                    }else{
-                        reject(response.error);
-                        // alertService.throwError(response.error);
-                        return;
-                    }
-                }).catch(error => {
-                    // alertService.throwWarning(error);
-                    reject(error);
-                    return;
-                });
-            }else{
-                reject("Mandatory Fields Missing Mandatory");
-                // alertService.throwError("Mandatory Fields Missing Mandatory Fields Missing Mandatory Fields Missing ");
-                return;
+
+        if(user_email!="" && user_password!=""){
+            var req = {
+                user_email:user_email,
+                user_password:user_password
             }
-        })
-        alertService.throwPromise(loginpromise);
+            userService.login(req).then(async (response) => {
+                if(response.success==true){
+                    Cookies.set('token', response.token);
+                    setState((prevState) => ({
+                        ...prevState,
+                        errorLog: ""
+                    }))
+                    window.location = "/dashboards";
+                }else{
+                    setState((prevState) => ({
+                        ...prevState,
+                        errorLog: response.error
+                    }))
+                    return;
+                }
+            }).catch(error => {
+                setState((prevState) => ({
+                    ...prevState,
+                    errorLog: error
+                }))
+                return;
+            });
+        }else{
+            setState((prevState) => ({
+                ...prevState,
+                errorLog: "Mandatory Fields Missing"
+            }))
+            return;
+        }
     }
 
     return(
         <Fragment>
-            <div className={style.customLoginFormContainer}>
-                <div>
-                    <p className={style.loginHeader}>
-                        <img src = {logo} />
-                    </p>
-                    <p className={style.loginWelcome}>Welcome Back 👋</p>
-                    <Card>
-                        <CardBody className={style.customPaddingCardBody}>
+            <Row style={{width:"100%"}}>
+                <Col md="6">
+                    <div className={style.customLoginFormContainer}>
+                        <div>
+                            <p className={style.loginHeader}>
+                                <img src = {logo} />
+                            </p>
+                            <p className={style.loginWelcome}>Welcome Back!</p>
+                            <p>Get insights and turn up your customer service game!</p>
+                            {errorLog && errorLog!=""?
+                                <div className={style.loginError}>
+                                    &#9888; {errorLog}
+                                </div>:<></>
+                            }
+                            
                             <FormGroup>
                                 <Label for="email">Email Address</Label>
-                                <Input onChange = {(e)=>handleChange(e)} value={user_email} className={style.customInput} type="email" name="user_email" id="email" placeholder="Email" />
+                                <Input onChange = {(e)=>handleChange(e)} value={user_email} className={style.customInput} type="email" name="user_email" id="email" placeholder="Enter your email address" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Password</Label>
-                                <Input onChange = {(e)=>handleChange(e)} value={user_password} className={style.customInput} type="password" name="user_password" id="password" placeholder="Password" />
+                                <Input onChange = {(e)=>handleChange(e)} value={user_password} className={style.customInput} type="password" name="user_password" id="password" placeholder="Enter your password" />
                             </FormGroup>
+                            <Label for="password">
+                                <Link to="/users/forgot_pass"> Forgot Password?</Link>
+                            </Label>
                             <FormGroup>
-                                <Button onClick={(e)=>login()} className={style.loginBtn}>Sign In</Button>
+                                <Button onClick={(e)=>login()} className={style.loginBtn}>
+                                    <div
+                                        style={{
+                                            float:"left"
+                                        }}
+                                    >
+                                        Sign In
+                                    </div>
+                                    <div
+                                        style={{
+                                            float:"right"
+                                        }}
+                                    >
+                                        →
+                                    </div>
+                                </Button>
                             </FormGroup>
                             <FormGroup>
                                 <div className={style.customSignupLink}>
-                                    New to Review Analytics? <Link to="/users/signup" className={style.customLink}>Create an Account</Link>
+                                    Dont't have an account? <Link to="/users/signup" className={style.customLink}>Sign Up</Link>
                                 </div>
                             </FormGroup>
-                        </CardBody>
-                    </Card>
-                </div>
-                <div>
-                    <Link to="/users/forgot_pass">
-                        <Button className={style.forgotPassBtn}>I forgot my password</Button>
-                    </Link>
-                </div>
-            </div>
+                            {/* <Card>
+                                <CardBody className={style.customPaddingCardBody}>
+                                    <FormGroup>
+                                        <Label for="email">Email Address</Label>
+                                        <Input onChange = {(e)=>handleChange(e)} value={user_email} className={style.customInput} type="email" name="user_email" id="email" placeholder="Enter your email address" />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for="password">Password</Label>
+                                        <Input onChange = {(e)=>handleChange(e)} value={user_password} className={style.customInput} type="password" name="user_password" id="password" placeholder="Enter your password" />
+                                    </FormGroup>
+                                    <Label for="password">
+                                        <Link to="/users/forgot_pass"> Forgot Password?</Link>
+                                    </Label>
+                                    <FormGroup>
+                                        <Button onClick={(e)=>login()} className={style.loginBtn}>
+                                            <div
+                                                style={{
+                                                    float:"left"
+                                                }}
+                                            >
+                                                Sign In
+                                            </div>
+                                            <div
+                                                style={{
+                                                    float:"right"
+                                                }}
+                                            >
+                                                →
+                                            </div>
+                                        </Button>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <div className={style.customSignupLink}>
+                                            Dont't have an account? <Link to="/users/signup" className={style.customLink}>Sign Up</Link>
+                                        </div>
+                                    </FormGroup>
+                                </CardBody>
+                            </Card> */}
+                        </div>
+                        {/* <div>
+                            <Link to="/users/forgot_pass">
+                                <Button className={style.forgotPassBtn}>I forgot my password</Button>
+                            </Link>
+                        </div> */}
+                    </div>
+                </Col>
+                <Col md="6"
+                    style= {{
+                        backgroundImage: 'url(' + placeholder + ')',
+                        backgroundPosition:"center",
+                        backgroundRepeat:"no-repeat"
+                    }}
+                >
+
+                </Col>
+            </Row>
+
         </Fragment>
     )
 }

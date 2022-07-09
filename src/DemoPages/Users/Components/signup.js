@@ -123,71 +123,125 @@ const Signup = () => {
         // "react-toastify": "^5.4.0",
         <Fragment>
             <Row>
-                <Col md="4"></Col>
-                <Col md="4">
-                    <p className={style.loginHeader}>
-                        <img src = {logo} />
-                    </p>
-                    <p className={style.loginWelcome}>Hi there! 👋 Let's get you set up</p>
-                    <Card>
-                        <CardBody className={style.customPaddingCardBody}>
-                            <FormGroup>
-                                <Label for="user_name">First Name & Last Name</Label>
-                                <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_name} type="user_name" name="user_name" id="user_name" placeholder="First Name & Last Name" />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="email">Work Email Address</Label>
-                                <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_email} type="email" name="user_email" id="user_email" placeholder="Work Email" />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="password">Password (Mininum 8 characters) 
-                                    {b_pass_match===false?<span style={{color:"red"}}> (Not Matched) </span>:""}
-                                </Label>
-                                <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_password} type="password" name="user_password" id="password" placeholder="Password" />
-                                <p className={style.passvalidText}>{pass_error_msg}</p>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="c_password">Confirm Password</Label>
-                                <Input  onBlur={(e)=>matchConfirmPass(e)} onChange={(e)=>handleChange(e)} className={style.customInput} value={user_c_password} type="password" name="user_c_password" id="c_password" placeholder="Password" />
-                            </FormGroup>
-                            <FormGroup>
-                                <Button 
-                                    disabled={
-                                        (user_password!="" && user_c_password!=""
-                                        && pass_error_msg == ""
-                                        && user_password == user_c_password
-                                        && terms_and_condition_accepted == true)?false:true}
-                                    className={style.loginBtn}
-                                    onClick={(e)=>signup()}
-                                >
-                                        Start Free Trial
-                                </Button>
-                            </FormGroup>
-                            <FormGroup>
-                                <div>
-                                    <div onClick={(e)=>handleCheckboxChange()} className={style.ToggleSwitch}>
-                                        {terms_and_condition_accepted?
-                                            <div className={style.knobActive} />:
-                                            <div className={style.knob} />
-                                        }
-                                        
-                                    </div>
-                                    <div className={style.termsAndConditionText}>
-                                        I have read and agree to the <Link className={style.customLinkSignUp}>Terms</Link> including the DPA and the <Link className={style.customLinkSignUp}>Privacy Policy</Link>
-                                    </div>
+                <Col md="6">
+                    <div className={style.customLoginFormContainer}>
+                        <p className={style.loginHeader}>
+                            <img src = {logo} />
+                        </p>
+                        <p className={style.loginWelcome}>New User?</p>
+                        <p>Get insights and turn up your customer service game!</p>
+                        <FormGroup>
+                            <Label for="user_name">First Name & Last Name</Label>
+                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_name} type="user_name" name="user_name" id="user_name" placeholder="First Name & Last Name" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="email">Work Email Address</Label>
+                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_email} type="email" name="user_email" id="user_email" placeholder="Work Email" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="password">Password (Mininum 8 characters) 
+                                {b_pass_match===false?<span style={{color:"red"}}> (Not Matched) </span>:""}
+                            </Label>
+                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_password} type="password" name="user_password" id="password" placeholder="Password" />
+                            <p className={style.passvalidText}>{pass_error_msg}</p>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="c_password">Confirm Password</Label>
+                            <Input  onBlur={(e)=>matchConfirmPass(e)} onChange={(e)=>handleChange(e)} className={style.customInput} value={user_c_password} type="password" name="user_c_password" id="c_password" placeholder="Password" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Button 
+                                disabled={
+                                    (user_password!="" && user_c_password!=""
+                                    && pass_error_msg == ""
+                                    && user_password == user_c_password
+                                    && terms_and_condition_accepted == true)?false:true}
+                                className={style.loginBtn}
+                                onClick={(e)=>signup()}
+                            >
+                                    Start Free Trial
+                            </Button>
+                        </FormGroup>
+                        <FormGroup>
+                            <div>
+                                <div onClick={(e)=>handleCheckboxChange()} className={style.ToggleSwitch}>
+                                    {terms_and_condition_accepted?
+                                        <div className={style.knobActive} />:
+                                        <div className={style.knob} />
+                                    }
+                                    
                                 </div>
-                                
-                            </FormGroup>
-                            <FormGroup>
-                                <div className={style.customSignupLinkSecondary}>
-                                    Already got an account? <Link to="/users/login" className={style.customLink}>Sign In</Link>
+                                <div className={style.termsAndConditionText}>
+                                    I have read and agree to the <Link className={style.customLinkSignUp}>Terms</Link> including the DPA and the <Link className={style.customLinkSignUp}>Privacy Policy</Link>
                                 </div>
-                            </FormGroup>
+                            </div>
                             
-                        </CardBody>
-                    </Card>
+                        </FormGroup>
+                        <FormGroup>
+                            <div className={style.customSignupLink}>
+                                Already got an account? <Link to="/users/login" className={style.customLink}>Sign In</Link>
+                            </div>
+                        </FormGroup>
+                        {/* <Card>
+                            <CardBody className={style.customPaddingCardBody}>
+                                <FormGroup>
+                                    <Label for="user_name">First Name & Last Name</Label>
+                                    <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_name} type="user_name" name="user_name" id="user_name" placeholder="First Name & Last Name" />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="email">Work Email Address</Label>
+                                    <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_email} type="email" name="user_email" id="user_email" placeholder="Work Email" />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="password">Password (Mininum 8 characters) 
+                                        {b_pass_match===false?<span style={{color:"red"}}> (Not Matched) </span>:""}
+                                    </Label>
+                                    <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_password} type="password" name="user_password" id="password" placeholder="Password" />
+                                    <p className={style.passvalidText}>{pass_error_msg}</p>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="c_password">Confirm Password</Label>
+                                    <Input  onBlur={(e)=>matchConfirmPass(e)} onChange={(e)=>handleChange(e)} className={style.customInput} value={user_c_password} type="password" name="user_c_password" id="c_password" placeholder="Password" />
+                                </FormGroup>
+                                <FormGroup>
+                                    <Button 
+                                        disabled={
+                                            (user_password!="" && user_c_password!=""
+                                            && pass_error_msg == ""
+                                            && user_password == user_c_password
+                                            && terms_and_condition_accepted == true)?false:true}
+                                        className={style.loginBtn}
+                                        onClick={(e)=>signup()}
+                                    >
+                                            Start Free Trial
+                                    </Button>
+                                </FormGroup>
+                                <FormGroup>
+                                    <div>
+                                        <div onClick={(e)=>handleCheckboxChange()} className={style.ToggleSwitch}>
+                                            {terms_and_condition_accepted?
+                                                <div className={style.knobActive} />:
+                                                <div className={style.knob} />
+                                            }
+                                            
+                                        </div>
+                                        <div className={style.termsAndConditionText}>
+                                            I have read and agree to the <Link className={style.customLinkSignUp}>Terms</Link> including the DPA and the <Link className={style.customLinkSignUp}>Privacy Policy</Link>
+                                        </div>
+                                    </div>
+                                    
+                                </FormGroup>
+                                <FormGroup>
+                                    <div className={style.customSignupLink}>
+                                        Already got an account? <Link to="/users/login" className={style.customLink}>Sign In</Link>
+                                    </div>
+                                </FormGroup>
+                                
+                            </CardBody>
+                        </Card> */}
+                    </div>
+
                 </Col>
-                <Col md="4"></Col>
             </Row>
         </Fragment>
     )

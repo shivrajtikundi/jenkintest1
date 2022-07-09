@@ -104,24 +104,30 @@
 }
 
 .loginHeader{
-    text-align: center;
-    font-size: 50px;
+    font-size: 25px;
     font-weight: 700;
     font-family: Copperplate;
+    margin-bottom: 55px;
+}
+
+.loginHeader img{
+    height: 70px;
+
 }
 
 .loginWelcome{
-    text-align: center;
     font-size: 25px;
     font-family: Copperplate;
+    margin-bottom: 0px;
 }
 
 .loginBtn, .loginBtn:hover, .loginBtn:focus{
     width: 100%!important;
-    background: #000;
+    background: #9747ff;
     color: white;
     height: 50px;
     font-size: 20px;
+    border-radius: 10px;
 }
 
 .customInput{
@@ -135,7 +141,7 @@
 
 .customSignupLink{
     height: 40px;
-    border: 1px solid #dddddd;
+    border: 0px solid #dddddd;
     text-align: center;
     border-radius: 5px;
 }
@@ -149,7 +155,7 @@
 }
 
 .customLink{
-    color: #C48C15;
+    color: #000;
     line-height: 2.5;
     font-weight: 500;
 }
@@ -213,7 +219,7 @@
 
 .customLoginFormContainer{
     margin: 0 auto;
-    width: 30%;
+    width: 70%;
 }
 .passvalidText{
     color: red;
@@ -226,4 +232,15 @@
     color: white;
     height: 50px;
     font-size: 20px;
+}
+
+.loginError{
+    background-color: #f3e8e8;
+    color: #8b0000;
+    text-align: center;
+    border-radius: 5px;
+    height: 40px;
+    font-weight: 600;
+    line-height: 2.7;
+    margin-bottom: 20px;
 }

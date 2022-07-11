@@ -1,15 +1,15 @@
-FROM node:14 AS builder
+FROM node:16 AS builder
 ENV NODE_ENV dev
 # Add a work directory
 WORKDIR /app
 # Cache and Install dependencies
 COPY package.json .
 
-RUN yarn install
+RUN npm install --f
 # Copy app files
 COPY . .
 # Build the app
-RUN yarn build
+RUN npm run build:dev
 
 # Bundle static assets with nginx
 FROM nginx:1.21.0-alpine as dev

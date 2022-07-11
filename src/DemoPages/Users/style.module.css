@@ -106,7 +106,7 @@
 .loginHeader{
     font-size: 25px;
     font-weight: 700;
-    font-family: Copperplate;
+    font-family: sans-serif;
     margin-bottom: 55px;
 }
 
@@ -117,8 +117,8 @@
 
 .loginWelcome{
     font-size: 25px;
-    font-family: Copperplate;
     margin-bottom: 0px;
+    font-family: sans-serif;
 }
 
 .loginBtn, .loginBtn:hover, .loginBtn:focus{

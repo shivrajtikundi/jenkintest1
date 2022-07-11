@@ -162,20 +162,11 @@ const Signup = () => {
                                     Start Free Trial
                             </Button>
                         </FormGroup>
-                        <FormGroup>
-                            <div>
-                                <div onClick={(e)=>handleCheckboxChange()} className={style.ToggleSwitch}>
-                                    {terms_and_condition_accepted?
-                                        <div className={style.knobActive} />:
-                                        <div className={style.knob} />
-                                    }
-                                    
-                                </div>
-                                <div className={style.termsAndConditionText}>
-                                    I have read and agree to the <Link className={style.customLinkSignUp}>Terms</Link> including the DPA and the <Link className={style.customLinkSignUp}>Privacy Policy</Link>
-                                </div>
-                            </div>
-                            
+                        <FormGroup check>
+                            <Label check>
+                                <Input type="checkbox" id="checkbox2" />{' '}
+                                I have read and agree to the <Link className={style.customLinkSignUp}>Terms</Link> including the <Link className={style.customLinkSignUp}>Privacy Policy</Link>
+                            </Label>
                         </FormGroup>
                         <FormGroup>
                             <div className={style.customSignupLink}>

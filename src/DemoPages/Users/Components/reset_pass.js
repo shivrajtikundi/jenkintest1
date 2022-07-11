@@ -6,6 +6,7 @@ import style from "../style.module.css";
 import {userService, alertService} from "../../../services/index";
 import Cookies from 'js-cookie';
 import logo from "../../../assets/utils/images/review_analytics_logo.png";
+import placeholder from "../../../assets/utils/images/side_placeholder.png";
 
 const ResetPass = (props) => {
     const [{user_password, user_c_password, b_pass_match, pass_error_msg},
@@ -102,14 +103,19 @@ const ResetPass = (props) => {
 
     return(
         <Fragment>
-            <div className={style.customLoginFormContainer}>
-                <div>
-                    <p className={style.loginHeader}>
-                        <img src = {logo} />
-                    </p>
-                    <p className={style.loginWelcome}>Choose your new password</p>
-                    <Card>
-                        <CardBody className={style.customPaddingCardBody}>
+            <Row style={{
+                    height: "100vh",
+                    width: '100vw'
+                }}>
+                <Col style={{
+                    height:"100vh"
+                }} md="7">
+                    <div className={style.customLoginFormContainer}>
+                        <div>
+                            <p className={style.loginHeader}>
+                                <img src = {logo} />
+                            </p>
+                            <p className={style.loginWelcome}>Choose your new password</p>
                             <FormGroup>
                                 <Label for="password">New Password (Mininum 8 characters) 
                                     {b_pass_match===false?<span style={{color:"red"}}> (Not Matched) </span>:""}
@@ -132,10 +138,47 @@ const ResetPass = (props) => {
                                     Reset Password
                                 </Button>
                             </FormGroup>
-                        </CardBody>
-                    </Card>
-                </div>
-            </div>
+                            {/* <Card>
+                                <CardBody className={style.customPaddingCardBody}>
+                                    <FormGroup>
+                                        <Label for="password">New Password (Mininum 8 characters) 
+                                            {b_pass_match===false?<span style={{color:"red"}}> (Not Matched) </span>:""}
+                                        </Label>
+                                        <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_password} type="password" name="user_password" id="password" placeholder="Password" />
+                                        <p className={style.passvalidText}>{pass_error_msg}</p>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for="c_password">Confirm Password</Label>
+                                        <Input  onBlur={(e)=>matchConfirmPass(e)} onChange={(e)=>handleChange(e)} className={style.customInput} value={user_c_password} type="password" name="user_c_password" id="c_password" placeholder="Password" />
+                                    </FormGroup>
+                                    
+                                    <FormGroup>
+                                        <Button 
+                                            disabled={
+                                                (user_password!="" && user_c_password!=""
+                                                && pass_error_msg == ""
+                                                && user_password == user_c_password)?false:true}
+                                            onClick={(e)=>restPass()} className={style.resetPassBtn}>
+                                            Reset Password
+                                        </Button>
+                                    </FormGroup>
+                                </CardBody>
+                            </Card> */}
+                        </div>
+                    </div>
+                </Col>
+                <Col md="5"
+                    style= {{
+                        backgroundImage: 'url(' + placeholder + ')',
+                        backgroundRepeat:"no-repeat",
+                        backgroundSize:"100% 100%",
+                        backgroundPosition:"center",
+                        height:"100vh"
+                    }}
+                >
+
+                </Col>
+            </Row>                              
         </Fragment>
     )
 }

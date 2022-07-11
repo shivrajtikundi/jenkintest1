@@ -6,6 +6,7 @@ import style from "../style.module.css";
 import ToggleSwitch from "./ToggleSwtch";
 import {userService, alertService} from "../../../services/index";
 import logo from "../../../assets/utils/images/review_analytics_logo.png"
+import placeholder from "../../../assets/utils/images/side_placeholder.png";
 
 const Signup = () => {
     const [{user_email, user_name, user_password, user_c_password, terms_and_condition_accepted, b_pass_match, pass_error_msg},
@@ -122,8 +123,11 @@ const Signup = () => {
     return(
         // "react-toastify": "^5.4.0",
         <Fragment>
-            <Row>
-                <Col md="6">
+            <Row style={{
+                    height: "100vh",
+                    width: '100vw'
+                }}>
+                <Col md="7">
                     <div className={style.customLoginFormContainer}>
                         <p className={style.loginHeader}>
                             <img src = {logo} />
@@ -131,43 +135,59 @@ const Signup = () => {
                         <p className={style.loginWelcome}>New User?</p>
                         <p>Get insights and turn up your customer service game!</p>
                         <FormGroup>
-                            <Label for="user_name">First Name & Last Name</Label>
-                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_name} type="user_name" name="user_name" id="user_name" placeholder="First Name & Last Name" />
+                            <Label for="user_name">Full Name</Label>
+                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_name} type="user_name" name="user_name" id="user_name" placeholder="Enter your full name" />
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Work Email Address</Label>
-                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_email} type="email" name="user_email" id="user_email" placeholder="Work Email" />
+                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_email} type="email" name="user_email" id="user_email" placeholder="Enter your email address" />
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">Password (Mininum 8 characters) 
                                 {b_pass_match===false?<span style={{color:"red"}}> (Not Matched) </span>:""}
                             </Label>
-                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_password} type="password" name="user_password" id="password" placeholder="Password" />
+                            <Input onChange={(e)=>handleChange(e)} className={style.customInput} value={user_password} type="password" name="user_password" id="password" placeholder="Enter your password" />
                             <p className={style.passvalidText}>{pass_error_msg}</p>
                         </FormGroup>
                         <FormGroup>
                             <Label for="c_password">Confirm Password</Label>
-                            <Input  onBlur={(e)=>matchConfirmPass(e)} onChange={(e)=>handleChange(e)} className={style.customInput} value={user_c_password} type="password" name="user_c_password" id="c_password" placeholder="Password" />
-                        </FormGroup>
-                        <FormGroup>
-                            <Button 
-                                disabled={
-                                    (user_password!="" && user_c_password!=""
-                                    && pass_error_msg == ""
-                                    && user_password == user_c_password
-                                    && terms_and_condition_accepted == true)?false:true}
-                                className={style.loginBtn}
-                                onClick={(e)=>signup()}
-                            >
-                                    Start Free Trial
-                            </Button>
+                            <Input  onBlur={(e)=>matchConfirmPass(e)} onChange={(e)=>handleChange(e)} className={style.customInput} value={user_c_password} type="password" name="user_c_password" id="c_password" placeholder="Confirm password" />
                         </FormGroup>
                         <FormGroup check>
                             <Label check>
-                                <Input type="checkbox" id="checkbox2" />{' '}
+                                <Input 
+                                    onClick={(e)=>handleCheckboxChange(e)}
+                                    checked = {terms_and_condition_accepted?
+                                        true:
+                                        false
+                                    }
+                                type="checkbox" id="checkbox" />{' '}
                                 I have read and agree to the <Link className={style.customLinkSignUp}>Terms</Link> including the <Link className={style.customLinkSignUp}>Privacy Policy</Link>
                             </Label>
                         </FormGroup>
+                        <Button 
+                            disabled={
+                                (user_password!="" && user_c_password!=""
+                                && pass_error_msg == ""
+                                && user_password == user_c_password
+                                && terms_and_condition_accepted == true)?false:true}
+                            onClick={(e)=>signup()} className={style.loginBtn}>
+                            <div
+                                style={{
+                                    float:"left"
+                                }}
+                            >
+                                Get OTP
+                            </div>
+                            <div
+                                style={{
+                                    float:"right"
+                                }}
+                            >
+                                →
+                            </div>
+                        </Button>
+                        
                         <FormGroup>
                             <div className={style.customSignupLink}>
                                 Already got an account? <Link to="/users/login" className={style.customLink}>Sign In</Link>
@@ -232,6 +252,15 @@ const Signup = () => {
                         </Card> */}
                     </div>
 
+                </Col>
+                <Col md="5"
+                    style= {{
+                        backgroundImage: 'url(' + placeholder + ')',
+                        backgroundRepeat:"no-repeat",
+                        backgroundSize:"100% 100%",
+                        backgroundPosition:"center"
+                    }}
+                >
                 </Col>
             </Row>
         </Fragment>

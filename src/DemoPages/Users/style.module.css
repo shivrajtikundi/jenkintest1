@@ -131,7 +131,7 @@
 }
 
 .customInput{
-    height: 50px;
+    height: 38px;
     border: 1px solid #dddddd;
 }
 
@@ -243,4 +243,12 @@
     font-weight: 600;
     line-height: 2.7;
     margin-bottom: 20px;
+}
+.backButton, .backButton:hover, .backButton:focus{
+    color:#9747ff;
+    border:1px solid #9747ff;
+    background: transparent;
+}
+.btnElemText{
+    margin-top:-3px;
 }

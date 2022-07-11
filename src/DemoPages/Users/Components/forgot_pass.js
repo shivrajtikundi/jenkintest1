@@ -6,6 +6,8 @@ import style from "../style.module.css";
 import {userService, alertService} from "../../../services/index";
 import Cookies from 'js-cookie';
 import logo from "../../../assets/utils/images/review_analytics_logo.png";
+import placeholder from "../../../assets/utils/images/side_placeholder.png";
+
 
 const ForgotPassword = () => {
     const [{
@@ -26,6 +28,9 @@ const ForgotPassword = () => {
         }))
     }
 
+    const goToLogin = () =>{
+        window.location.href = "/users/login"
+    }
 
     const sendResetPassLink = () => {
         var send_reset_pass_link = new Promise((resolve, reject)=>{
@@ -56,28 +61,93 @@ const ForgotPassword = () => {
 
     return(
         <Fragment>
-            <div className={style.customLoginFormContainer}>
-                <div>
-                    <p className={style.loginHeader}>
-                        <img src = {logo} />
-                    </p>
-                    <p className={style.loginWelcome}>😬 It's ok, it happens to the best of us.</p>
-                    <Card>
-                        <CardBody className={style.customPaddingCardBody}>
+            <Row style={{
+                    height: "100vh",
+                    width: '100vw'
+                }}>
+                <Col style={{
+                    height:"100vh"
+                }} md="7">
+                    <div className={style.customLoginFormContainer}>
+                        <div>
+                            <p className={style.loginHeader}>
+                                <img src = {logo} />
+                            </p>
+                            <Button onClick={(e)=>goToLogin()} className={style.backButton}>
+                                <div className={style.btnElemText}>←</div>
+                            </Button>
+                            <p className={style.loginWelcome}>Forgot Password?</p>
+                            <p>It's Ok, we've got your back!</p>
                             <FormGroup>
                                 <Label for="email">Email Address</Label>
-                                <Input onChange = {(e)=>handleChange(e)} value={user_email} className={style.customInput} type="email" name="user_email" id="email" placeholder="Email" />
+                                <Input onChange = {(e)=>handleChange(e)} value={user_email} className={style.customInput} type="email" name="user_email" id="email" placeholder="Enter your email address" />
                             </FormGroup>
                             
                             <FormGroup>
-                                <Button onClick={(e)=>sendResetPassLink()} className={style.loginBtn}>
-                                    Send Password Reset Instruction
+                                <Button 
+                                    onClick={(e)=>sendResetPassLink()} 
+                                    className={style.loginBtn}>
+                                    <div
+                                        style={{
+                                            float:"left"
+                                        }}
+                                    >
+                                        Get OTP
+                                    </div>
+                                    <div
+                                        style={{
+                                            float:"right"
+                                        }}
+                                    >
+                                        →
+                                    </div>
                                 </Button>
                             </FormGroup>
-                        </CardBody>
-                    </Card>
-                </div>
-            </div>
+                            {/* <Card>
+                                <CardBody className={style.customPaddingCardBody}>
+                                    <FormGroup>
+                                        <Label for="email">Email Address</Label>
+                                        <Input onChange = {(e)=>handleChange(e)} value={user_email} className={style.customInput} type="email" name="user_email" id="email" placeholder="Enter your email address" />
+                                    </FormGroup>
+                                    
+                                    <FormGroup>
+                                        <Button 
+                                            onClick={(e)=>sendResetPassLink()} 
+                                            className={style.loginBtn}>
+                                            <div
+                                                style={{
+                                                    float:"left"
+                                                }}
+                                            >
+                                                Get OTP
+                                            </div>
+                                            <div
+                                                style={{
+                                                    float:"right"
+                                                }}
+                                            >
+                                                →
+                                            </div>
+                                        </Button>
+                                    </FormGroup>
+                                </CardBody>
+                            </Card> */}
+                        </div>
+                    </div>
+                </Col>
+                <Col md="5"
+                    style= {{
+                        backgroundImage: 'url(' + placeholder + ')',
+                        backgroundRepeat:"no-repeat",
+                        backgroundSize:"100% 100%",
+                        backgroundPosition:"center",
+                        height:"100vh"
+                    }}
+                >
+
+                </Col>
+            </Row>
+
         </Fragment>
     )
 }

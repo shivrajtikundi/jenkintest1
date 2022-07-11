@@ -7,7 +7,7 @@ import {userService, alertService} from "../../../services/index";
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from "react-toastify";
 import logo from "../../../assets/utils/images/review_analytics_logo.png";
-import placeholder from "../../../assets/utils/images/review_analytics_logo.png";
+import placeholder from "../../../assets/utils/images/side_placeholder.png";
 
 const Login = () => {
     const [{user_email, user_password,errorLog},
@@ -70,8 +70,13 @@ const Login = () => {
 
     return(
         <Fragment>
-            <Row style={{width:"100%"}}>
-                <Col md="6">
+            <Row style={{
+                    height: "100vh",
+                    width: '100vw'
+                }}>
+                <Col style={{
+                    height:"100vh"
+                }} md="7">
                     <div className={style.customLoginFormContainer}>
                         <div>
                             <p className={style.loginHeader}>
@@ -165,11 +170,13 @@ const Login = () => {
                         </div> */}
                     </div>
                 </Col>
-                <Col md="6"
+                <Col md="5"
                     style= {{
                         backgroundImage: 'url(' + placeholder + ')',
+                        backgroundRepeat:"no-repeat",
+                        backgroundSize:"100% 100%",
                         backgroundPosition:"center",
-                        backgroundRepeat:"no-repeat"
+                        height:"100vh"
                     }}
                 >
 

@@ -62,9 +62,10 @@ const ForgotPassword = () => {
 
     return(
         <Fragment>
-            <Row style={{
+             <Row style={{
                     height: "100vh",
-                    width: '100vw'
+                    width: '100vw',
+                    backgroundColor:"white"
                 }}>
                 <Col style={{
                     height:"100vh",

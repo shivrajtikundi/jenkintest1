@@ -5,8 +5,9 @@ import { Row, Col, Card, CardBody, CardHeader, CardTitle, CardText, Button, Card
 import style from "../style.module.css";
 import ToggleSwitch from "./ToggleSwtch";
 import {userService, alertService} from "../../../services/index";
-import logo from "../../../assets/utils/images/review_analytics_logo.png"
+import logo from "../../../assets/utils/images/Logo (2).png";
 import placeholder from "../../../assets/utils/images/side_placeholder.png";
+import forward_arrow from "../../../assets/utils/images/arrow_forward_24px.svg";
 
 const Signup = () => {
     const [{user_email, user_name, user_password, user_c_password, terms_and_condition_accepted, b_pass_match, pass_error_msg},
@@ -127,10 +128,13 @@ const Signup = () => {
                     height: "100vh",
                     width: '100vw'
                 }}>
-                <Col md="7">
+                <Col style={{
+                    height:"100vh",
+                    paddingLeft:"370px"
+                }} md="8">
                     <div className={style.customLoginFormContainer}>
                         <p className={style.loginHeader}>
-                            <img src = {logo} />
+                            <img className={style.authPageLogo} src = {logo} />
                         </p>
                         <p className={style.loginWelcome}>New User?</p>
                         <p>Get insights and turn up your customer service game!</p>
@@ -174,7 +178,8 @@ const Signup = () => {
                             onClick={(e)=>signup()} className={style.loginBtn}>
                             <div
                                 style={{
-                                    float:"left"
+                                    float:"left",
+                                    fontWeight:"300"
                                 }}
                             >
                                 Get OTP
@@ -184,7 +189,7 @@ const Signup = () => {
                                     float:"right"
                                 }}
                             >
-                                →
+                                <img src={forward_arrow}></img>
                             </div>
                         </Button>
                         
@@ -253,7 +258,7 @@ const Signup = () => {
                     </div>
 
                 </Col>
-                <Col md="5"
+                <Col md="4"
                     style= {{
                         backgroundImage: 'url(' + placeholder + ')',
                         backgroundRepeat:"no-repeat",

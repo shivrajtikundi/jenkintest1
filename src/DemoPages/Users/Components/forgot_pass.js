@@ -5,8 +5,9 @@ import { Row, Col, Card, CardBody, CardHeader, CardTitle, CardText, Button, Card
 import style from "../style.module.css";
 import {userService, alertService} from "../../../services/index";
 import Cookies from 'js-cookie';
-import logo from "../../../assets/utils/images/review_analytics_logo.png";
+import logo from "../../../assets/utils/images/Logo (2).png";
 import placeholder from "../../../assets/utils/images/side_placeholder.png";
+import forward_arrow from "../../../assets/utils/images/arrow_forward_24px.svg";
 
 
 const ForgotPassword = () => {
@@ -66,12 +67,13 @@ const ForgotPassword = () => {
                     width: '100vw'
                 }}>
                 <Col style={{
-                    height:"100vh"
-                }} md="7">
+                    height:"100vh",
+                    paddingLeft:"370px"
+                }} md="8">
                     <div className={style.customLoginFormContainer}>
                         <div>
                             <p className={style.loginHeader}>
-                                <img src = {logo} />
+                                <img className={style.authPageLogo} src = {logo} />
                             </p>
                             <Button onClick={(e)=>goToLogin()} className={style.backButton}>
                                 <div className={style.btnElemText}>←</div>
@@ -89,7 +91,8 @@ const ForgotPassword = () => {
                                     className={style.loginBtn}>
                                     <div
                                         style={{
-                                            float:"left"
+                                            float:"left",
+                                            fontWeight:"300"
                                         }}
                                     >
                                         Get OTP
@@ -99,7 +102,7 @@ const ForgotPassword = () => {
                                             float:"right"
                                         }}
                                     >
-                                        →
+                                        <img src={forward_arrow}></img>
                                     </div>
                                 </Button>
                             </FormGroup>
@@ -135,7 +138,7 @@ const ForgotPassword = () => {
                         </div>
                     </div>
                 </Col>
-                <Col md="5"
+                <Col md="4"
                     style= {{
                         backgroundImage: 'url(' + placeholder + ')',
                         backgroundRepeat:"no-repeat",

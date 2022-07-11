@@ -218,7 +218,7 @@
 }
 
 .customLoginFormContainer{
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 70%;
 }
 .passvalidText{
@@ -251,4 +251,7 @@
 }
 .btnElemText{
     margin-top:-3px;
+}
+.authPageLogo{
+    height: 20px!important;
 }

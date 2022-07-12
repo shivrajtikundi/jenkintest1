@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps{
-                sh 'docker build -t ui.'
+                sh 'docker build -t ui .'
             }
         }
         stage('deploy docker image') {
